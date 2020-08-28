@@ -1,0 +1,50 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+}
+html{
+    width: 100vw;
+    height: 100vh;
+    overflow:hidden;
+}
+#gameBackground {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+}
+
+#playerCharacter {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    width: 32px;
+    height: 32px;
+    background-image: url("./Assets/playerDown.png");
+}
+
+#textContainer {
+    text-align: center;
+}
+
+#playerLives {
+    font-size: 16pt;
+}
+
+h1 {
+    background: white;
+}
+.traps
+{
+    position: absolute;
+    z-index: 1000;
+}
+#deadTree
+{
+    width: 64px;
+    height: 32px;
+}
