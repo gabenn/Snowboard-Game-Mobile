@@ -63,6 +63,7 @@ function moveUp() { //"dev" function :D
 }
 
 function moveDown() {
+    playerCharacter.style.backgroundImage = 'url("./assets/playerDown.png")';
     clearIntervals();
     intervalDown =
         setInterval(function () {
@@ -76,6 +77,7 @@ function moveDown() {
 
 function moveRight() {
     clearIntervals();
+    playerCharacter.style.backgroundImage = 'url("./assets/playerRight.png")';
     intervalRight =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
@@ -89,6 +91,7 @@ function moveRight() {
 
 function moveLeft() {
     clearIntervals();
+    playerCharacter.style.backgroundImage = 'url("./assets/playerLeft.png")';
     intervalLeft =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
@@ -132,17 +135,14 @@ document.addEventListener("keydown", function (event) {
     }
     if (event.keyCode == 37 || event.keyCode == 65) { //left
         moveLeft();
-        playerCharacter.style.backgroundImage = 'url("./assets/playerLeft.png")';
     }
 
     if (event.keyCode == 39 || event.keyCode == 68) { //right
         moveRight();
-        playerCharacter.style.backgroundImage = 'url("./assets/playerRight.png")';
     }
 
     if (event.keyCode == 40 || event.keyCode == 83) { //down
         moveDown();
-        playerCharacter.style.backgroundImage = 'url("./assets/playerDown.png")';
     }
 })
 
