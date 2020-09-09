@@ -14,6 +14,24 @@ if (localStorage.getItem('highScoreLS') == undefined) localStorage.setItem('high
 highScore = parseInt(localStorage.getItem('highScoreLS'))
 gameScore = 0;
 
+function lose() {
+    traps.forEach(trap => {
+        //hitboxes (Ik they sucks sometimes)
+        if (trap.offsetTop < playerCharacter.offsetTop + 16 &&
+            trap.offsetTop > playerCharacter.offsetTop - 24 &&
+            trap.offsetLeft < playerCharacter.offsetLeft + 24 &&
+            trap.offsetLeft > playerCharacter.offsetLeft - 60
+        ) {
+            if (highScore == undefined || highScore < gameScore) localStorage.setItem('highScoreLS', gameScore);
+
+            clearIntervals();
+            alert(`High Score: ${localStorage.getItem('highScoreLS')}\nScore: ${gameScore}`);
+            location.reload();
+        }
+
+    });
+}
+
 function levelWin() {
     for (let i = 0; i < traps.length; i++) {
         if (traps[i].offsetTop < 0) { //changing position when trap is unvisible 
@@ -77,22 +95,6 @@ function clearIntervals() { //"dev" function :D
     clearInterval(intervalRight);
     clearInterval(intervalLeft);
     clearInterval(intervalUp);
-}
-
-function lose() {
-    for (let i = 0; i < traps.length; i++) { //hitboxes (Ik they sucks sometimes)
-        if (traps[i].offsetTop < playerCharacter.offsetTop + 16 &&
-            traps[i].offsetTop > playerCharacter.offsetTop - 24 &&
-            traps[i].offsetLeft < playerCharacter.offsetLeft + 24 &&
-            traps[i].offsetLeft > playerCharacter.offsetLeft - 60
-        ) {
-            if (highScore == undefined || highScore < gameScore) localStorage.setItem('highScoreLS', gameScore);
-
-            clearIntervals();
-            alert(`High Score: ${localStorage.getItem('highScoreLS')}\nScore: ${gameScore}`);
-            location.reload();
-        }
-    }
 }
 
 function createTrap() {
