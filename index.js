@@ -59,7 +59,7 @@ function moveDown() {
             }
             lose();
             levelWin();
-        }, 10)
+        }, 15)
 }
 
 function moveRight() {
@@ -73,7 +73,7 @@ function moveRight() {
             }
             lose();
             levelWin();
-        }, 10)
+        }, 15)
 }
 
 function moveLeft() {
@@ -87,7 +87,7 @@ function moveLeft() {
             }
             lose();
             levelWin();
-        }, 10)
+        }, 15)
 }
 
 function clearIntervals() { //"dev" function :D   
