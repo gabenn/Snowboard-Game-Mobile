@@ -57,7 +57,7 @@ h1 {
     flex-direction: row;
     justify-content:space-between;
     z-index: 1;
-    border: none;
+    border: none;;
 }
 #rightArrow{
     background: url("assets/rightArrow.png");
