@@ -7,9 +7,11 @@
     const favIcon = document.querySelector("#favIcon");
     const playerCharacter = document.querySelector("#playerCharacter");
     const score = document.querySelector("#score");
+    //modal
     const modalBox = document.querySelector(".modalBox");
     const modalHighScore = document.querySelector("#modalHighScore");
     const modalScore = document.querySelector("#modalScore");
+    //arrows
     const leftArrow = document.querySelector("#leftArrow");
     const rightArrow = document.querySelector("#rightArrow");
     const downArrow = document.querySelector("#downArrow");
@@ -52,13 +54,15 @@
                 if (highScore == undefined || highScore < gameScore) localStorage.setItem('highScoreLS', gameScore);
 
                 clearIntervals();
-                modalBox.style.zIndex = 3;
-                modalHighScore.value = localStorage.getItem('highScoreLS');
-                modalScore.value = gameScore;
-                document.removeEventListener('keydown',listeners);
-                leftArrow.removeEventListener('click',moveLeftMobile);
-                rightArrow.removeEventListener('click',moveRightMobile);
-                downArrow.removeEventListener('click',moveDownMobile);
+                setTimeout(() => {
+                    modalBox.style.zIndex = 3;
+                    modalHighScore.value = localStorage.getItem('highScoreLS');
+                    modalScore.value = gameScore;
+                }, 500);
+                document.removeEventListener('keydown', listeners);
+                leftArrow.removeEventListener('click', moveLeftMobile);
+                rightArrow.removeEventListener('click', moveRightMobile);
+                downArrow.removeEventListener('click', moveDownMobile);
             }
         }
     }
@@ -125,10 +129,11 @@
         clearInterval(intervalLeft);
         clearInterval(intervalUp);
     }
+
     function usingDevFunction() {
         console.log("Dont be cheater. Dont use dev functions");
     }
-    const listeners =(e) => {
+    const listeners = (e) => {
         if (e.key == " ") { //space
             if (prodMode === true) {
                 clearIntervals();
@@ -163,22 +168,31 @@
             favIcon.href = playerDown;
         }
     }
-    const moveLeftMobile = ()=>{
+    const moveLeftMobile = () => {
         clearIntervals();
         moveLeft();
+        playerCharacter.style.backgroundImage = `url("${playerLeft}")`;
+        favIcon.href = playerLeft;
+
     }
-    const moveRightMobile = ()=>{
+    const moveRightMobile = () => {
         clearIntervals();
         moveRight();
+        playerCharacter.style.backgroundImage = `url("${playerRight}")`;
+        favIcon.href = playerRight;
+
     }
-    const moveDownMobile = ()=>{
+    const moveDownMobile = () => {
         clearIntervals();
         moveDown();
+        playerCharacter.style.backgroundImage = `url("${playerDown}")`;
+        favIcon.href = playerDown;
+
     }
-    document.addEventListener("keydown",listeners) 
-    leftArrow.addEventListener("click",moveLeftMobile); 
-    rightArrow.addEventListener("click",moveRightMobile); 
-    downArrow.addEventListener("click",moveDownMobile);
+    document.addEventListener("keydown", listeners)
+    leftArrow.addEventListener("click", moveLeftMobile);
+    rightArrow.addEventListener("click", moveRightMobile);
+    downArrow.addEventListener("click", moveDownMobile);
 
 
 
