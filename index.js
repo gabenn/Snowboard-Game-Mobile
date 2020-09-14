@@ -21,7 +21,9 @@
     const moveLength = 3;
     const prodMode = false;
     const trapsStart = 10;
-    let intervalLeft, intervalDown, intervalRight, intervalUp, gameScore = 0;
+    let gameScore = 0;
+    //intervals
+    let intervalLeft, intervalDown, intervalRight, intervalUp;
 
 
     if (localStorage.getItem('highScoreLS') == undefined) localStorage.setItem('highScoreLS', 0);
