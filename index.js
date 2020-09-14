@@ -31,7 +31,7 @@
     function loseWin() {
         for (let i = 0; i < traps.length; i++) {
             if (traps[i].offsetTop < 0) { //changing position when trap is unvisible 
-                traps[i].style.top = `${Math.floor(Math.random() * window.innerHeight)+600}px`;
+                traps[i].style.top = `${Math.floor(Math.random() * window.innerHeight)+350}px`;
                 let trapX, trapY;
                 trapX = Math.floor(Math.random() * window.innerWidth);
 
