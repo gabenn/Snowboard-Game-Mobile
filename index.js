@@ -33,19 +33,17 @@
     function loseWin() {
         for (let i = 0; i < traps.length; i++) {
             if (traps[i].offsetTop < 0) { //changing position when trap is unvisible 
-                traps[i].style.top = `${Math.floor(Math.random() * window.innerHeight)+350}px`;
-                let trapX, trapY;
-                trapX = Math.floor(Math.random() * window.innerWidth);
+                const trapXY = setTrapXY();
 
-                if (trapX < 65) trapX += 64;
-                if (trapX > innerWidth - 65) trapX -= 64;
+                traps[i].style.left = `${trapXY[0]}px`; // setting trap x coordinate
+                traps[i].style.top = `${trapXY[1]}px`; // setting trap y coordinate
 
-                traps[i].style.left = `${trapX}px`;
+                if (traps[traps.length - 1].offsetTop < 20) {
+                    createTrap(trapXY[0], trapXY[0]); // adding new element after "win"
+                    gameScore = traps.length - trapsStart; //score
+                    score.innerHTML = `Score ${gameScore}`;
+                }
 
-                if (i % traps.length == 0) createTrap(trapX, trapY); // adding new element after 
-
-                gameScore = traps.length - trapsStart; //score
-                score.innerHTML = `Score ${gameScore}`;
             }
             //hitboxes
             if (traps[i].offsetTop < playerCharacter.offsetTop + 32 &&
@@ -61,6 +59,11 @@
                     modalHighScore.value = localStorage.getItem('highScoreLS');
                     modalScore.value = gameScore;
                 }, 500);
+                document.addEventListener("keydown", (e) => {
+                    if (e.key = "Enter") {
+                        location.reload();
+                    }
+                });
                 document.removeEventListener('keydown', listeners);
                 leftArrow.removeEventListener('click', moveLeftMobile);
                 rightArrow.removeEventListener('click', moveRightMobile);
@@ -196,22 +199,26 @@
     rightArrow.addEventListener("click", moveRightMobile);
     downArrow.addEventListener("click", moveDownMobile);
 
+    function setTrapXY() {
+        let trapX, trapY;
+        const trapXY = [];
 
+        trapX = Math.floor(Math.random() * window.innerWidth);
+
+        if (trapX < 65) trapX += 64; //min x coordinate=64
+        if (trapX > innerWidth - 65) trapX -= 64; //max x coordinate=window width-64
+
+        trapY = Math.floor(Math.random() * window.innerHeight + 350); //min Y coordinate =600
+
+        trapXY[0] = trapX; //trap X coordinate
+        trapXY[1] = trapY; //trap Y coordinate
+        return trapXY;
+    }
 
     function init() {
-        for (let i = 0; i < trapsStart; i++) { // Traps quantity
-            let trapX, trapY;
-            trapX = Math.floor(Math.random() * window.innerWidth);
-
-            if (trapX < 65) trapX += 64;
-            if (trapX > innerWidth - 65) trapX -= 64;
-
-            trapY = Math.floor(Math.random() * window.innerHeight)
-
-            while (trapY < window.innerHeight * 0.5) {
-                trapY = Math.floor(Math.random() * window.innerHeight);
-            }
-            createTrap(trapX, trapY);
+        for (let i = 0; i < trapsStart; i++) {
+            const trapXY = setTrapXY();
+            createTrap(trapXY[0], trapXY[1]);
         }
     }
     init();
