@@ -208,7 +208,7 @@
         if (trapX < 65) trapX += 64; //min x coordinate=64
         if (trapX > innerWidth - 65) trapX -= 64; //max x coordinate=window width-64
 
-        trapY = Math.floor(Math.random() * window.innerHeight + 350); //min Y coordinate =600
+        trapY = Math.floor(Math.random() * window.innerHeight + window.innerHeight *0.8); //min Y coordinate =600
 
         trapXY[0] = trapX; //trap X coordinate
         trapXY[1] = trapY; //trap Y coordinate
